@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: components
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/components?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
+    driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 18882
+
+eureka:
+  instance:
+    prefer-ip-address: true  #注册服务的时候使用服务的ip地址
+  client:
+    service-url:
+      defaultZone: http://localhost:18880/eureka/
+mybatis-plus:
+  #所有sql映射配置文件的位置
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  #打印sql语句到控制台
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+feign:
+  hystrix:
+    enbaled: true
