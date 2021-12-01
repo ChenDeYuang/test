@@ -14,6 +14,10 @@ public class UserCodeController {
     @Autowired
     UserCodeService userCodeService;
 
+    /**
+     * fix bug
+     * @return
+     */
     @GetMapping("/selectAll")
     public List<UserCode>  selectAll(){
         List<UserCode>  list = userCodeService.selectAll();
