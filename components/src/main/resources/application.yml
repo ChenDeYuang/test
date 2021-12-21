@@ -21,6 +21,28 @@ mybatis-plus:
   #打印sql语句到控制台
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-feign:
-  hystrix:
-    enbaled: true
+#feign:
+#  httpclient:
+#    enabled: true
+
+#seata:
+#  enabled: true
+#  application-id: rb_user
+#  enable-auto-data-source-proxy: true
+#  tx-service-group: my_test_tx_group
+#  config:
+#    type: nacos
+#    nacos:
+#      group: SEATA_GROUP
+#      server-addr: localhost:8848
+#      namespace:
+#      username: nacos
+#      password: nacos
+#  registry:
+#    type: nacos
+#    nacos:
+#      group: SEATA_GROUP
+#      server-addr: localhost:8848
+#      namespace:
+#      username: nacos
+#      password: nacos

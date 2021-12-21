@@ -17,6 +17,28 @@ eureka:
     service-url:
       defaultZone: http://localhost:18880/eureka/
 mybatis-plus:
-  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  mapper-locations: classpath:mapper/**/*.xml
+#  打印sql语句到控制台
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#seata:
+#  enabled: true
+#  application-id: rb_user
+#  enable-auto-data-source-proxy: true
+#  tx-service-group: my_test_tx_group
+#  config:
+#    type: nacos
+#    nacos:
+#      group: SEATA_GROUP
+#      server-addr: localhost:8848
+#      namespace:
+#      username: nacos
+#      password: nacos
+#  registry:
+#    type: nacos
+#    nacos:
+#      group: SEATA_GROUP
+#      server-addr: localhost:8848
+#      namespace:
+#      username: nacos
+#      password: nacos
