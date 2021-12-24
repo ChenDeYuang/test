@@ -1,0 +1,46 @@
+server:
+  port: 18883
+spring:
+  application:
+    name: gateway
+  redis:
+    host: localhost
+    password:
+    port: 6379
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+#          lower-case-service-id: true
+      routes:
+        - id: user
+          uri: lb://user
+          predicates:
+            - Path=/user/**,/token/**
+          filters:
+            - RewritePath=/(?<segment>/?.*),/$\{segment}
+
+        - id: components
+          uri: lb://components
+          predicates:
+            - Path=/usercode/**
+          filters:
+            - RewritePath=/(?<segment>/?.*),/$\{segment}
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://root:root@localhost:18880/eureka/
+
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:18880/eureka/
+#  instance:
+#    prefer-ip-address: true
+

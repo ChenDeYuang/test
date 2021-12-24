@@ -1,13 +1,11 @@
 package com.user.service.user;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.user.mapper.user.UserMapper;
 import com.user.pojo.user.User;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tool.ThreadTool;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
@@ -31,6 +29,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    private ThreadPoolExecutor threadPoolExecutor;
 
     @Override
     public void insert(User user) {
@@ -61,10 +62,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
             tasks.add(writeUser);
         }
         //在这里使用线程池执行任务
-        ThreadPoolExecutor executor = ThreadTool.get("write_user");
+        //ThreadPoolExecutor executor = ThreadTool.get();
         countDownLatch = new CountDownLatch(tasks.size());
         for (WriteUser task : tasks) {
-            executor.execute(task);
+            threadPoolExecutor.execute(task);
             //countDownLatch.countDown();
         }
         try {
@@ -85,7 +86,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
     @Override
     public void insertLog(){
         //线程池
-        ThreadPoolExecutor poolExecutor = ThreadTool.get("t1");
+        //ThreadPoolExecutor executor = ThreadTool.get("t1");
 
         //ExecutorService singleExecutor = ThreadTool.getSingleExecutor();
 
@@ -94,7 +95,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
         for (UserLog userLog : userLogs) {
 
              //singleExecutor.execute(userLog);
-             poolExecutor.execute(userLog);
+            threadPoolExecutor.execute(userLog);
 
 
         }

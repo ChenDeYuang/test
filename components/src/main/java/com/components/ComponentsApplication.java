@@ -21,10 +21,4 @@ public class ComponentsApplication {
         SpringApplication.run(ComponentsApplication.class, args);
     }
 
-  /*  @Bean
-    @ConditionalOnMissingBean(FeingInterceptor.class)
-    public FeingInterceptor feingInterceptor(){
-        return new FeingInterceptor();
-    }*/
-
 }
