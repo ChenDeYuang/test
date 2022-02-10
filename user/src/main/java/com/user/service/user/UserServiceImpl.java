@@ -1,5 +1,7 @@
 package com.user.service.user;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.user.mapper.user.UserMapper;
 import com.user.pojo.user.User;
@@ -80,6 +82,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
     @Override
     public Integer getMaxId() {
         return userMapper.getMaxId();
+    }
+
+    @Override
+    public List<User> selectUsers() {
+        List<User> users = userMapper.selectUsers(1,10);
+        return users;
     }
 
 

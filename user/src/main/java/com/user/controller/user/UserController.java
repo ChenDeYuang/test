@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @EnableFeignClients(basePackages = "com.components.feingnclient")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -28,6 +29,12 @@ public class UserController {
     //@GlobalTransactional
     public List<UserCode> selectAll(){
         List<UserCode> list = userCodeFeing.selectAll();
+        return list;
+    }
+
+    @GetMapping("/selectUsers")
+    public List<User> selectUsers(){
+        List<User> list = userService.selectUsers();
         return list;
     }
 

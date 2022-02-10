@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.user.pojo.user.User;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public interface UserService extends IService<User> {
 
@@ -14,4 +15,6 @@ public interface UserService extends IService<User> {
     String writeLocal(HttpServletResponse response,Integer num);
 
     Integer getMaxId();
+
+    List<User> selectUsers();
 }
